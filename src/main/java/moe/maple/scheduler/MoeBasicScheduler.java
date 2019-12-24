@@ -125,7 +125,7 @@ public final class MoeBasicScheduler implements MoeScheduler {
     @Override
     public void stop() {
         registry.clear();
-        if (!updateLoop.cancel(true))
+        if (updateLoop != null && !updateLoop.cancel(true))
             throw new IllegalThreadStateException("Couldn't cancel update loop.");
         executor.shutdown();
         asyncExecutor.shutdown();
